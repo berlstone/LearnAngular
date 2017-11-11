@@ -7,7 +7,7 @@ export class SentencecasePipe implements PipeTransform {
 
   transform(value: string): any {
     
-    let words = value.split(' ');
+    let words = (value) ? value.split(' ') : [];
     for(var index = 0; index<words.length;index++)
     {
       let word = words[index];
