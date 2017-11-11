@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -12,6 +12,15 @@ export class RatingComponent implements OnInit {
   ngOnInit() {
   }
 
-  isFavourite = true;
-  toggleState=()=>{ this.isFavourite = !this.isFavourite  }
+  @Input('is-favourite') isFavourite = true;
+  @Output('change') change = new EventEmitter();
+
+  toggleState=()=>{ 
+    this.isFavourite = !this.isFavourite 
+    this.change.emit({isSelected: this.isFavourite})
+  }
+}
+
+export interface RatingEventArgs {
+isSelected : boolean
 }

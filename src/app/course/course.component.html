@@ -1,7 +1,9 @@
 
 <h1>
   Course Component </h1>
+
 <br>
+<app-rating [is-favourite] = "course.isFavourite" (change)="onRatingChanged($event)" ></app-rating>
 <p>
   {{dummytext}}
 </p>
@@ -40,14 +42,42 @@
         {{titlecase| sentencecase}}
     </div>
   </div>
-
-
-title: {{courses.title | summary:'100' | uppercase}} <br/>
-rating: {{courses.rating | number:'1.2-2'}} <br/>
-students: {{courses.students | number}} <br/>
-price: {{courses.price |currency:'AED'}} <br/>
-<p (click)="toggleFormat()">releaseDate: {{courses.releaseDate | date:format}}</p> <br/>
-<app-rating></app-rating>
+  <div class="col-sm-12 col-lg-6 col-md-12">
+      <h2>Striped Rows</h2>
+      <p>The .table-striped class adds zebra-stripes to a table:</p>            
+      <table class="table table-striped">
+        <thead classs="thead-dark">
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td> {{course.title | summary:'100' | uppercase}}</td>
+          
+          </tr>
+          <tr>
+            <td>rating</td>
+            <td>{{course.rating | number:'1.2-2'}}</td>
+           
+          </tr>
+          <tr>
+            <td>students</td>
+            <td>{{course.students | number}}</td>
+            
+          </tr>
+          <tr>
+            <td>price</td>
+            <td>{{course.price |currency:'AED'}}</td>
+            
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
 
 
 

@@ -1,3 +1,4 @@
+import { RatingEventArgs } from './../rating/rating.component';
 import { BlogService } from './../blog.service';
 import { Component, OnInit } from '@angular/core';
 import  {JSONData} from '../sample.data'
@@ -30,6 +31,7 @@ export class CourseComponent implements OnInit {
   btnIsActive = true;
   email = "berltone@gmail.com"
   titlecase;
+
   onSuccess = ($event) =>{
     $event.stopPropagation();
     console.log('Success button is clicked');
@@ -46,14 +48,14 @@ export class CourseComponent implements OnInit {
   }
   printemail = ()=>console.log(this.email);
   
-  courses = {
+  course = {
       title: `It gives us immense pleasure to service your financial requirement at HDFC Bank and thank you for Banking with us. 
       We are having many good investment plans like KIDS PLAN, KIDS A/C , SAVINGS PLAN, PROTECTION PLAN, RETIREMENT,TAX BENEFIT , & HEALTH PLAN `,
       rating: 4.978,
       students: 3788,
       price:197.67,
-      releaseDate: new Date(2017,2,1)
-
+      releaseDate: new Date(2017,2,1),
+      isFavourite :false
   }
   toggle=true;
 
@@ -61,5 +63,9 @@ export class CourseComponent implements OnInit {
 
   toggleFormat = function(){
     this.toggle = !this.toggle;
+  }
+
+  onRatingChanged = (eventArgs:RatingEventArgs) => {
+    console.log("Rating value changed. ", eventArgs)
   }
 }
