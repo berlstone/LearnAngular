@@ -1,13 +1,17 @@
 import { RatingEventArgs } from './../rating/rating.component';
 import { BlogService } from './../blog.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import  {JSONData} from '../sample.data'
 
 
 @Component({
   selector: 'Course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  styles:[`
+  h1{ color:red;}
+  `],
+  encapsulation: ViewEncapsulation.Emulated
 })
 
 export class CourseComponent implements OnInit {

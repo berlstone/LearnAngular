@@ -12,6 +12,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { SummaryPipe } from './summary.pipe';
 import { RatingComponent } from './rating/rating.component';
 import { SentencecasePipe } from './sentencecase.pipe';
+import { PanelComponent } from './panel/panel.component';
 
 
 
@@ -23,7 +24,8 @@ import { SentencecasePipe } from './sentencecase.pipe';
     HeroDetailComponent,
     SummaryPipe,
     RatingComponent,
-    SentencecasePipe
+    SentencecasePipe,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
