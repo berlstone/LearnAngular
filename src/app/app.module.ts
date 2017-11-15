@@ -13,6 +13,7 @@ import { SummaryPipe } from './summary.pipe';
 import { RatingComponent } from './rating/rating.component';
 import { SentencecasePipe } from './sentencecase.pipe';
 import { PanelComponent } from './panel/panel.component';
+import { LikeComponent } from './like/like.component';
 
 
 
@@ -25,7 +26,8 @@ import { PanelComponent } from './panel/panel.component';
     SummaryPipe,
     RatingComponent,
     SentencecasePipe,
-    PanelComponent
+    PanelComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
