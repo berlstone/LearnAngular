@@ -1,98 +1,145 @@
-
-<h1>
-  Course Component </h1>
-
-<br>
-<app-rating [is-favourite] = "course.isFavourite" (change)="onRatingChanged($event)" ></app-rating>
-<p>
-  {{dummytext}}
-</p>
-<span>Total Posts : {{ posts.length }}</span>
-<br/>  
-<span>Total Pics: {{ totalpics }}</span>
-<p> Service Call : {{ servicedata }} </p>
-<p> called from global variable : {{dumtext}}</p>
-<div (click) = "onDivClick()">
-<button class="btn btn-danger" [class.btn-outline-primary]="btnIsActive"> Hello Click Me!</button>
-<button class="btn  btn-success" (click) = "onSuccess($event)" > Hello Click Me!</button>
-<button class="btn btn-warning"  > Hello Click Me!</button>
-</div>
-<br/>
-
 <div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control" name="FirstName" placeholder="First Name" (keyup.enter)="onKeyUp($event)"/>
+  <div class="col-md-7">
+      <h1>
+          Course Component </h1>
+        
+        <br>
+        <app-rating [is-favourite] = "course.isFavourite" (change)="onRatingChanged($event)" ></app-rating>
+        <p>
+          {{dummytext}}
+        </p>
+        <span>Total Posts : {{ posts.length }}</span>
+        <br/>  
+        <span>Total Pics: {{ totalpics }}</span>
+        <p> Service Call : {{ courses.length }} </p>
+        <p> called from global variable : {{dumtext}}</p>
+        <div (click) = "onDivClick()">
+        <button class="btn btn-danger" [class.btn-outline-primary]="btnIsActive"> Hello Click Me!</button>
+        <button class="btn  btn-success" (click) = "onSuccess($event)" > Hello Click Me!</button>
+        <button class="btn btn-warning"  > Hello Click Me!</button>
+        </div>
+        <br/>
+        
+        <div class="row">
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="FirstName" placeholder="First Name" (keyup.enter)="onKeyUp($event)"/>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="LastName" placeholder="Last Name" #lname (keyup)="onKeyUp($event, lname.value)" />
+          </div>
+          <div class="col-md-2">
+              <input type="email" class="form-control" name="email" placeholder="Email Address" (keyup)="onKeyUp($event, lname.value)" />
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="email" [value]="email" class="form-control" name="planet" placeholder="Planet" (keyup.enter)=" email=$event.target.value;onKeyUp($event, lname.value)" />
+            </div>
+            <div class="col-md-2">
+                <input type="email" [(ngModel)]="email" class="form-control" name="planet" placeholder="Planet" (keyup.enter)="printemail()" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" [(ngModel)]="titlecase" class="form-control" name="titlecase" placeholder="Tite Case Converter" />
+                {{titlecase| sentencecase}}
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6 col-md-12">
+              <h2>Unique Course Details</h2>
+              <p>The .table-striped class adds zebra-stripes to a table:</p>            
+              <table class="table table-striped">
+                <thead classs="thead-dark">
+                  <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Title</td>
+                    <td> {{course.title | summary:'100' | uppercase}}</td>
+                  
+                  </tr>
+                  <tr>
+                    <td>rating</td>
+                    <td>{{course.rating | number:'1.2-2'}}</td>
+                   
+                  </tr>
+                  <tr>
+                    <td>students</td>
+                    <td>{{course.students | number}}</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>price</td>
+                    <td>{{course.price |currency:'AED'}}</td>
+                    
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+       
+
+      
+        <div class="row">
+          <div class="w-50 m-3">
+            <bootstrap-panel>
+                <ng-container class="heading">My Heading</ng-container>
+                    <div class="body">Body 456</div>
+              </bootstrap-panel>
+            </div>
+        </div>
+        <app-like [isActive]="false" [likesCount]= "9" ></app-like>
+        
   </div>
-  <div class="col-md-2">
-    <input type="text" class="form-control" name="LastName" placeholder="Last Name" #lname (keyup)="onKeyUp($event, lname.value)" />
-  </div>
-  <div class="col-md-2">
-      <input type="email" class="form-control" name="email" placeholder="Email Address" (keyup)="onKeyUp($event, lname.value)" />
+  <div class="col-md-5">
+
+    <input type="text" class="form-control" placeholder="Text Formatter" appInputFormat="uppercase" name="TextFormatter"/>
+
+      <div *ngIf="courses.length>0; then hasCourses else noCourses"> </div>
+      
+      <ng-template #hasCourses>
+          <h2> Courses Available! -> {{courses.length}}</h2> 
+      </ng-template>
+      <ng-template #noCourses>
+      <h3>No Courses Yet</h3>
+      </ng-template>  
+      
+      <div> 
+        <button class="btn btn-primary" (click)="loadCourses()"><i class="fa fa-refresh fa-1x"></i> Load Course</button>
+        <button class="btn btn-primary" (click)="addCourse()">Add Course</button> 
+      </div>
+      <br/>
+      <ul>
+
+        <li *ngFor="let course of courses; even as isEven; index as i;trackBy:trackCourse;"  [class.bg-success]="course.isUpdated">
+          {{i}} {{course.CourseName}} <span *ngIf="isEven">(Even)</span>
+          <button class="btn btn-sm btn-danger" (click)="removeCourse(course);"><strong>X</strong></button>
+          <button class="btn btn-sm btn-warning" (click)="updateCourse(course);"><i class="fa fa-check fa-1x"></i></button>
+        </li>
+      </ul>
+      <hr/>
+     
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a (click)="viewMode='Mathematics'" class="nav-link" [class.active]="viewMode=='Mathematics'">Mathematics</a></li>
+      <li class="nav-item"><a (click)="viewMode='Science'" class="nav-link" [class.active]="viewMode=='Science'">Science</a></li>
+      <li class="nav-item"><a (click)="viewMode='Tamil'" class="nav-link" [class.active]="viewMode=='Tamil'">Tamil</a></li>
+    </ul> 
+
+
+    <div [ngSwitch]="viewMode">
+      <div *ngSwitchCase="'Mathematics'">Mathematics View</div>
+      <div *ngSwitchCase="'Science'">Science View</div>
+      <div *ngSwitchCase="'Tamil'">Tamil View</div>
+      <div *ngSwitchDefault>Otherwise...</div>
+    </div>
+    <zippy title="Announcements">
+      <p>I am a Zippy Content!</p>
+    </zippy>
+   
+    <!-- End Column-->
   </div>
 </div>
-<div class="row">
-    <div class="col-md-2">
-        <input type="email" [value]="email" class="form-control" name="planet" placeholder="Planet" (keyup.enter)=" email=$event.target.value;onKeyUp($event, lname.value)" />
-    </div>
-    <div class="col-md-2">
-        <input type="email" [(ngModel)]="email" class="form-control" name="planet" placeholder="Planet" (keyup.enter)="printemail()" />
-    </div>
-    <div class="col-md-2">
-        <input type="text" [(ngModel)]="titlecase" class="form-control" name="titlecase" placeholder="Tite Case Converter" />
-        {{titlecase| sentencecase}}
-    </div>
-  </div>
-  <div class="col-sm-12 col-lg-6 col-md-12">
-      <h2>Striped Rows</h2>
-      <p>The .table-striped class adds zebra-stripes to a table:</p>            
-      <table class="table table-striped">
-        <thead classs="thead-dark">
-          <tr>
-            <th>Property</th>
-            <th>Value</th>
-          
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Title</td>
-            <td> {{course.title | summary:'100' | uppercase}}</td>
-          
-          </tr>
-          <tr>
-            <td>rating</td>
-            <td>{{course.rating | number:'1.2-2'}}</td>
-           
-          </tr>
-          <tr>
-            <td>students</td>
-            <td>{{course.students | number}}</td>
-            
-          </tr>
-          <tr>
-            <td>price</td>
-            <td>{{course.price |currency:'AED'}}</td>
-            
-          </tr>
-         
-        </tbody>
-      </table>
-    </div>
 
-
-
-<i class="fa fa-camera-retro fa-lg"></i> fa-lg
-<i class="fa fa-camera-retro fa-2x"></i> fa-2x
-<i class="fa fa-camera-retro fa-3x"></i> fa-3x
-<i class="fa fa-camera-retro fa-4x"></i> fa-4x
-<i class="fa fa-camera-retro fa-5x"></i> fa-5x
-
-<div class="row">
-  <div class="w-50 m-3">
-    <bootstrap-panel>
-        <ng-container class="heading">My Heading</ng-container>
-            <div class="body">Body 456</div>
-      </bootstrap-panel>
-    </div>
-</div>
-<app-like></app-like>
+<hr />

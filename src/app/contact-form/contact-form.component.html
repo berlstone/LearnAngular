@@ -1,0 +1,122 @@
+<p>
+  contact-form works!
+</p>
+<div class="row">
+  <div class="col-md-6">
+      <form #f = "ngForm" (ngSubmit)="submit(f)"> 
+          <div class="form-group row">
+            <label for="eid" class="col-4 col-form-label">Emirates ID</label> 
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-address-card-o"></i>
+                </div> 
+                <input id="eid" ngModel #eid = "ngModel" name="eid" placeholder="Emirates ID Card" type="text" class="form-control here" aria-describedby="eidHelpBlock" (change)="log(eid);" pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}" required="required">
+              </div> 
+              <!-- <small style="color:red;" *ngIf="eid.touched && !eid.valid">Emirates Id is invalid! </small> -->
+              <small style="color:red;" *ngIf="eid.touched && eid.errors.required">Emirates Id is required </small><br> 
+              <small style="color:red;" *ngIf="eid.touched && !eid.errors.pattern">Emirates Id doesnt match pattern!</small>
+
+              <span id="eidHelpBlock" class="form-text text-muted">Fill your Emirates ID card without dashes</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="fullName" class="col-4 col-form-label">Full Name</label> 
+            <div class="col-8">
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-address-card-o"></i>
+                </div> 
+                <input id="fullName" ngModel #fullName = "ngModel" name="fullName" placeholder="Enter your full name" type="text" class="form-control here" required="required">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="specialNote" class="col-4 col-form-label">Special Notes</label> 
+            <div class="col-8">
+              <textarea id="specialNote" ngModel #specialNote = "ngModel" name="specialNote" cols="40" rows="5" class="form-control" aria-describedby="specialNoteHelpBlock"></textarea> 
+              <span id="specialNoteHelpBlock" class="form-text text-muted">Enter you special note to the manager</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4">Favourite Gadget</label> 
+            <div class="col-8">
+              <label class="custom-control custom-radio">
+                <input name="favGadget" ngModel #favGadget = "ngModel" type="radio" class="custom-control-input" value="ipad" aria-describedby="favGadgetHelpBlock" required="required"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">iPad</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <input name="favGadget" type="radio" ngModel #favGadget = "ngModel" class="custom-control-input" value="mobilephone" aria-describedby="favGadgetHelpBlock" required="required"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">Mobile Phone</span>
+              </label>
+              <label class="custom-control custom-radio">
+                <input name="favGadget" type="radio"  ngModel #favGadget = "ngModel" class="custom-control-input" value="wirelessspeaker" aria-describedby="favGadgetHelpBlock" required="required"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">Wireless Speakers</span>
+              </label> 
+              <span id="favGadgetHelpBlock" class="form-text text-muted">Choose your favourite hand-held device</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4">Favourite Mobile</label> 
+            <div class="col-8">
+              <label class="custom-control custom-checkbox">
+                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="samsung" required="required" checked="checked"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">Samsung</span>
+              </label>
+              <label class="custom-control custom-checkbox">
+                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="lg" required="required"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">LG</span>
+              </label>
+              <label class="custom-control custom-checkbox">
+                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="xiaomi" required="required"> 
+                <span class="custom-control-indicator"></span> 
+                <span class="custom-control-description">Xiaomi</span>
+              </label>
+            </div>
+          </div> 
+          <div class="form-group row">
+              <label for="country" class="col-4 col-form-label">Country</label> 
+              <div class="col-8">
+                <select id="country" name="country" ngModel #country = "ngModel" required="required" class="custom-select">
+                  <option value="india">India</option>
+                  <option value="uae">UAE</option>
+                  <option value="usa">United States</option>
+                </select>
+              </div>
+            </div> 
+          <div class="form-group row">
+            <div class="offset-4 col-8">
+              <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+  </div>
+  <div class="col-md-6">
+      <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Emirated ID</th>
+              <th scope="col">Fav Gadget</th>
+              <th scope="col">Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of contacts; index as i">
+              <th scope="row">{{i}}</th>
+              <td>{{contact.fullName}}</td>
+              <td>{{contact.eid}}</td>
+              <td>{{contact.favMobile}}</td>
+              <td>{{contact.country}}</td>
+            </tr>
+           
+          </tbody>
+        </table>
+  </div>
+</div>

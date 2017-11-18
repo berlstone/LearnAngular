@@ -1,22 +1,22 @@
+import { CourseService } from './../course.service';
 import { RatingEventArgs } from './../rating/rating.component';
 import { BlogService } from './../blog.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import  {JSONData} from '../sample.data'
+import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
   selector: 'Course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  styles:[`
-  h1{ color:red;}
-  `],
+
   encapsulation: ViewEncapsulation.Emulated
 })
 
 export class CourseComponent implements OnInit {
  
-  constructor(public blogService: BlogService) { 
+  constructor(private blogService: BlogService, private _courseService:CourseService) { 
     
   }
   ngOnInit(){
@@ -31,9 +31,14 @@ export class CourseComponent implements OnInit {
   totalpics = this.sampledata.Photos.length;
 
   dumtext = this.blogService.getAlbums();
-  servicedata = this.blogService.getUsers();
+  //courses = this._courseService.getCourses();
+  //courses = this.sampledata.Posts.slice(0,20);
+  courses =[]; 
   btnIsActive = true;
-  email = "berltone@gmail.com"
+  email = "berltone@gmail.com";
+
+  viewMode ='Mathematics';
+
   titlecase;
 
   onSuccess = ($event) =>{
@@ -71,5 +76,29 @@ export class CourseComponent implements OnInit {
 
   onRatingChanged = (eventArgs:RatingEventArgs) => {
     console.log("Rating value changed. ", eventArgs)
+  }
+  loadCourses(){
+
+    this.courses= [
+      {id:1,CourseName:"Zoology",Credit:100,isUpdated:false},
+      {id:2,CourseName:"Botany",Credit:100,isUpdated:false},
+      {id:3,CourseName:"Chemistry",Credit:100,isUpdated:false},
+    ];
+  }
+  addCourse=()=>{
+    var ind = this.courses.length+1;
+    this.courses.push( {id:ind,CourseName:"Random "+ind,Credit:100,isUpdated:false} );
+  }
+  removeCourse=(course)=>{
+    var index = this.courses.indexOf(course);
+    this.courses.splice(index,1);
+  }
+  updateCourse=(course)=>{
+    var index = this.courses.indexOf(course);
+    course.CourseName+=" updated";
+    course.isUpdated=true;
+  }
+  trackCourse(index,course){
+    return course ? course.id:undefined;
   }
 }

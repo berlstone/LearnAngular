@@ -4,7 +4,7 @@ export class JSONData {
     constructor(){}
 
     get Posts(){
-      return this._postarray;
+      return this._postarray.slice(0,25);
     };
     get Comments(){
             return this._comments;

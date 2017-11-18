@@ -1,7 +1,7 @@
 
 <div class="d-inline-flex p-2">
     Rating : 
-    <i class="fa fa-2x" [class.fa-star]="isFavourite" [class.fa-star-o]="!isFavourite" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
-    <i class="fa fa-2x" [class.fa-star]="isFavourite" [class.fa-star-o]="!isFavourite" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
-    <i class="fa fa-2x" [class.fa-star]="isFavourite" [class.fa-star-o]="!isFavourite" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
+    <i class="fa fa-2x" [ngClass] = "{'fa-star':isFavourite,'fa-star-o':!isFavourite }" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
+    <i class="fa fa-2x" [ngClass] = "{'fa-star':isFavourite,'fa-star-o':!isFavourite }" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
+    <i class="fa fa-2x" [ngClass] = "{'fa-star':isFavourite,'fa-star-o':!isFavourite }" (click)="toggleState()" aria-hidden="true" style="cursor:pointer" ></i>
 </div>
