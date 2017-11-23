@@ -31,12 +31,7 @@ export class ContactFormComponent  {
   console.log(value);
   }
   submit(f){
-<<<<<<< HEAD
     //console.log(f);
-=======
-    console.log(f);
-
->>>>>>> 461089430c9b556794445ec9f78ac7abb9675caa
     this.addContact(f.value);
     f.resetForm();
   }
