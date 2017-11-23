@@ -11,12 +11,12 @@
                 <div class="input-group-addon">
                   <i class="fa fa-address-card-o"></i>
                 </div> 
-                <input id="eid" ngModel #eid = "ngModel" name="eid" placeholder="Emirates ID Card" type="text" class="form-control here" aria-describedby="eidHelpBlock" (change)="log(eid);" pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}" required="required">
+                <input id="eid" ngModel #eid = "ngModel" name="eid" placeholder="Emirates ID Card" type="text" class="form-control here" aria-describedby="eidHelpBlock"  pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}" required>
               </div> 
-              <!-- <small style="color:red;" *ngIf="eid.touched && !eid.valid">Emirates Id is invalid! </small> -->
+              <div *ngIf="eid.touched && !eid.valid">
               <small style="color:red;" *ngIf="eid.touched && eid.errors.required">Emirates Id is required </small><br> 
-              <small style="color:red;" *ngIf="eid.touched && !eid.errors.pattern">Emirates Id doesnt match pattern!</small>
-
+              <small style="color:red;" *ngIf="eid.touched && eid.errors.pattern">Emirates Id doesnt match pattern!</small>
+              </div>
               <span id="eidHelpBlock" class="form-text text-muted">Fill your Emirates ID card without dashes</span>
             </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="form-group row">
             <label for="specialNote" class="col-4 col-form-label">Special Notes</label> 
             <div class="col-8">
-              <textarea id="specialNote" ngModel #specialNote = "ngModel" name="specialNote" cols="40" rows="5" class="form-control" aria-describedby="specialNoteHelpBlock"></textarea> 
+              <textarea id="specialNote" ngModel #specialNote = "ngModel" name="specialNote" cols="40" rows="5" class="form-control" aria-describedby="specialNoteHelpBlock" required></textarea> 
               <span id="specialNoteHelpBlock" class="form-text text-muted">Enter you special note to the manager</span>
             </div>
           </div>
@@ -63,17 +63,17 @@
             <label class="col-4">Favourite Mobile</label> 
             <div class="col-8">
               <label class="custom-control custom-checkbox">
-                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="samsung" required="required" checked="checked"> 
+                <input name="samsung" type="checkbox"  ngModel #samsung = "ngModel" class="custom-control-input" value="samsung"  checked="checked"> 
                 <span class="custom-control-indicator"></span> 
                 <span class="custom-control-description">Samsung</span>
               </label>
               <label class="custom-control custom-checkbox">
-                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="lg" required="required"> 
+                <input name="lg" type="checkbox"  ngModel #lg = "ngModel" class="custom-control-input" value="lg"> 
                 <span class="custom-control-indicator"></span> 
                 <span class="custom-control-description">LG</span>
               </label>
               <label class="custom-control custom-checkbox">
-                <input name="favMobile" type="checkbox"  ngModel #favMobile = "ngModel" class="custom-control-input" value="xiaomi" required="required"> 
+                <input name="xiaomi" type="checkbox"  ngModel #xiaomi = "ngModel" class="custom-control-input" value="xiaomi" > 
                 <span class="custom-control-indicator"></span> 
                 <span class="custom-control-description">Xiaomi</span>
               </label>
@@ -82,18 +82,18 @@
           <div class="form-group row">
               <label for="country" class="col-4 col-form-label">Country</label> 
               <div class="col-8">
-                <select id="country" name="country" ngModel #country = "ngModel" required="required" class="custom-select">
-                  <option value="india">India</option>
-                  <option value="uae">UAE</option>
-                  <option value="usa">United States</option>
+                <select id="country" multiple name="country" ngModel #country = "ngModel" required="required" class="custom-select">
+                  <option *ngFor="let country of countries;" [value]="country.id">{{country.name}}</option>
+                  
                 </select>
               </div>
             </div> 
           <div class="form-group row">
             <div class="offset-4 col-8">
-              <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+              <button name="submit" type="submit" class="btn btn-primary" [disabled]="!f.valid" >Submit</button>
             </div>
           </div>
+          {{f.value | json}}
         </form>
   </div>
   <div class="col-md-6">
@@ -112,7 +112,7 @@
               <th scope="row">{{i}}</th>
               <td>{{contact.fullName}}</td>
               <td>{{contact.eid}}</td>
-              <td>{{contact.favMobile}}</td>
+              <td>{{contact.favGadget}}</td>
               <td>{{contact.country}}</td>
             </tr>
            

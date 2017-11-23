@@ -26,11 +26,17 @@ export class ContactFormComponent  {
 
   eid_pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}";
   contacts = [];
+
   log(value){
   console.log(value);
   }
   submit(f){
+<<<<<<< HEAD
     //console.log(f);
+=======
+    console.log(f);
+
+>>>>>>> 461089430c9b556794445ec9f78ac7abb9675caa
     this.addContact(f.value);
     f.resetForm();
   }
@@ -41,4 +47,12 @@ export class ContactFormComponent  {
     //console.log(this.contacts);
 
   }
+  countries = [
+    {id:'AE', name:'United Arab Emirates'},
+    {id:'IN', name:'India'},
+    {id:'US', name:'United States of America'},
+    {id:'AF', name:'Africa'},
+    {id:'SL', name:'Srilanka'},
+    {id:'PK', name:'Pakistan'}
+  ];
 }

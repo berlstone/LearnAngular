@@ -13,6 +13,7 @@ export class InputFormatDirective {
   @HostListener('blur') onBlur(){
 
     let value : string = this.el.nativeElement.value;
+    
     if(this.appInputFormat =='uppercase')
       this.el.nativeElement.value = value.toUpperCase();
     else if(this.appInputFormat =='emiratesid')
