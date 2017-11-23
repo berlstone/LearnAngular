@@ -10,7 +10,7 @@ export class LikeComponent  {
   @Input("isActive") isActive: boolean;
   @Input("likesCount") likesCount : number;
 
-  onClick() {
+  onClick( $event ) {
 
     this.likesCount += this.isActive ? -1:1;
     this.isActive = !(this.isActive);

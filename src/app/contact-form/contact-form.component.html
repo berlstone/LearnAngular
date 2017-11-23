@@ -3,7 +3,7 @@
 </p>
 <div class="row">
   <div class="col-md-6">
-      <form #f = "ngForm" (ngSubmit)="submit(f)"> 
+      <form #f = "ngForm" (ngSubmit)="submit(f)" > 
           <div class="form-group row">
             <label for="eid" class="col-4 col-form-label">Emirates ID</label> 
             <div class="col-8">
@@ -27,7 +27,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-address-card-o"></i>
                 </div> 
-                <input id="fullName" ngModel #fullName = "ngModel" name="fullName" placeholder="Enter your full name" type="text" class="form-control here" required="required">
+                <input  id="fullName" ngModel #fullName = "ngModel" name="fullName" placeholder="Enter your full name" type="text" class="form-control here" required="required">
               </div>
             </div>
           </div>
@@ -118,5 +118,34 @@
            
           </tbody>
         </table>
+        <div class="card" style="width:100%">
+          <div class="card-body">
+              <form [formGroup]="form2">
+                  <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input formControlName="fullname" type="text" name="fullname" id="fullname" class="form-control" >
+                    <div *ngIf="fullname.touched && fullname.invalid" class="alert alert-danger small">
+                        <span *ngIf="fullname.errors.required"> Full Name is required </span>
+                        <span *ngIf="fullname.errors.minlength"> Min {{fullname.errors.minlength.requiredLength}} charecters are required. </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="notes"> Comments / Notes</label>
+                    <textarea formControlName="notes" name="notes" id="notes" class="form-control"></textarea>
+                    <div *ngIf="notes.touched && notes.invalid" class="alert alert-danger small">
+                        <span *ngIf="notes.errors.required"> Please enter some notes </span>
+                        <span *ngIf="notes.errors.minlength"> Min {{fullname.errors.minlength.requiredLength}} charecters are required. </span>
+                        <span *ngIf="notes.errors.cannotContainSplChar.result"> {{cannotContainSplChar.result}} is not allowed. </span>
+                    </div>
+                    {{cannotContainSplChar.result}} 
+                  </div>
+                  <button class="btn btn-success" style="cursor: pointer" type="button">Submit Comment</button>
+                  
+                </form>
+                
+          </div>
+        </div>
+        
+        
   </div>
 </div>

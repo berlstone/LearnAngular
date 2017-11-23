@@ -3,7 +3,7 @@ import { JSONData } from './sample.data';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BlogService } from './blog.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 
@@ -18,12 +18,14 @@ import { LikeComponent } from './like/like.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from './zippy/zippy.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { CommentvalidatorComponent } from './commentvalidator/commentvalidator.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
     CourseComponent,
     NavbarComponent,
     SummaryPipe,
@@ -38,7 +40,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [BlogService,JSONData,CourseService],
   bootstrap: [AppComponent]
