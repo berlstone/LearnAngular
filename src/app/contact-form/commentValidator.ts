@@ -16,8 +16,10 @@ export class CommentValidators{
             }
          }
          var result = {}
+        if(char!=null)
+            return { cannotContainSplChar : { result:true,char:char}} 
+        else return null;
         
-        return (char) ? { result:true,spclChar:char} : null;
     }
 
     // static containsAny(str, substrings) {

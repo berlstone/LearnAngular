@@ -1,4 +1,8 @@
 .form-control.ng-touched.ng-invalid{
     border: 2px dotted red;
-    
+    background-color: rgb(250, 250, 201);
+}
+
+.form-control.ng-touched.ng-valid{
+background-color: rgb(174, 245, 174);
 }

@@ -1,9 +1,10 @@
-<p>
-  contact-form works!
-</p>
+<h3>
+  Template driven Forms
+</h3>
 <div class="row">
   <div class="col-md-6">
       <form #f = "ngForm" (ngSubmit)="submit(f)" > 
+         
           <div class="form-group row">
             <label for="eid" class="col-4 col-form-label">Emirates ID</label> 
             <div class="col-8">
@@ -59,7 +60,7 @@
               <span id="favGadgetHelpBlock" class="form-text text-muted">Choose your favourite hand-held device</span>
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row" ngModelGroup="favouriteMobile">
             <label class="col-4">Favourite Mobile</label> 
             <div class="col-8">
               <label class="custom-control custom-checkbox">
@@ -118,9 +119,21 @@
            
           </tbody>
         </table>
+        <h3>Reactive Forms</h3>
         <div class="card" style="width:100%">
           <div class="card-body">
-              <form [formGroup]="form2">
+              <form [formGroup]="form2" (ngSubmit)="register()">
+                <div class="form-group">
+                  <label for="username"> Username</label>
+                  <input type="text" formControlName="username" name="username"  id="username" placeholder="<unique username>" class="form-control" >
+                    
+                      <div *ngIf="username.touched && username.invalid" class="alert alert-danger small">
+                          <span *ngIf="username.errors.required">Username is mandatory</span>
+                          <span *ngIf="username.errors.cannotContainSpace">Username cannot contain spaces</span>
+                          <span *ngIf="username.errors.shouldBeUnique">Username is already taken</span>
+                      </div>  
+                      <span *ngIf="username.pending" class="small"> checking...</span>
+                </div>
                   <div class="form-group">
                     <label for="fullname">Full Name</label>
                     <input formControlName="fullname" type="text" name="fullname" id="fullname" class="form-control" >
@@ -135,12 +148,15 @@
                     <div *ngIf="notes.touched && notes.invalid" class="alert alert-danger small">
                         <span *ngIf="notes.errors.required"> Please enter some notes </span>
                         <span *ngIf="notes.errors.minlength"> Min {{fullname.errors.minlength.requiredLength}} charecters are required. </span>
-                        <span *ngIf="notes.errors.cannotContainSplChar.result"> {{cannotContainSplChar.result}} is not allowed. </span>
+                        <span *ngIf="notes.errors.cannotContainSplChar?.result"> Special Charecters are not allowed. </span>
                     </div>
-                    {{cannotContainSplChar.result}} 
-                  </div>
-                  <button class="btn btn-success" style="cursor: pointer" type="button">Submit Comment</button>
                   
+                  </div>
+                  <button [disabled]="!form2.valid" class="btn btn-success" style="cursor: pointer" type="submit">Submit Comment</button>
+                  <div class="alert alert-danger" *ngIf="form2.errors">
+                    <span class="small" *ngIf="form2.errors.regerror">
+                      {{form2.errors.regerror_text}}
+                  </span></div>
                 </form>
                 
           </div>
@@ -148,4 +164,19 @@
         
         
   </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form ngFormGroup="arrayform" > 
+      <h3>Form Array</h3>
+      <input type="text" name="coursename" id="coursename" (keyup.enter)="addCourse(course)" #course>
+    </form>
+    <ul class="list-group" >
+      <li class="list-group-item" *ngFor="let course of arrayform.get('coursename').controls;" (click)="removeCourse(course)">{{course.value}}</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <app-change-password></app-change-password>
+  </div>
+  <div class="col-md-2"></div>
 </div>
