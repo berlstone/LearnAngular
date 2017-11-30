@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,Validators,FormArray,FormBuilder } from '@angular/forms'
 import {CommentValidators} from './commentValidator'
-import {UsernameValidator} from './../Validators/UsernameValidator'
+import {UsernameValidator} from './../../Validators/UsernameValidator'
 
 
 @Component({

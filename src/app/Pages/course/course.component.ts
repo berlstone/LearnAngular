@@ -1,9 +1,9 @@
-import { CourseService } from './../course.service';
-import { RatingEventArgs } from './../rating/rating.component';
-import { BlogService } from './../blog.service';
+import { CourseService } from './../../Services/course.service';
+import { RatingEventArgs } from './../../components/rating/rating.component';
+import { BlogService } from './../../Services/blog.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import  {JSONData} from '../sample.data'
-import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
+import  {JSONData} from './../../sample.data'
+//import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({

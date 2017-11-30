@@ -11,8 +11,8 @@ export class ZippyComponent {
 
   @Input('title') title:string;
   @Input('footer') footer:string;
-
-  isExpanded : boolean;
+  @Input('isExpanded') isExpanded:boolean;
+  
 
   toggle(){
 

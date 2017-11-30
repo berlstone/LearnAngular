@@ -22,5 +22,5 @@ export class RatingComponent implements OnInit {
 }
 
 export interface RatingEventArgs {
-isSelected : boolean
+  isSelected : boolean
 }
