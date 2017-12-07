@@ -1,0 +1,27 @@
+<img src="../../../assets/loader.gif" *ngIf="isLoaded == false" style="width:100px">
+<div *ngIf="isLoaded == true">
+  <h3> {{post.title}} </h3>
+  <p> {{post.body}}  </p>
+</div>
+
+
+<button class="btn btn-primary-outline" type="button" (click)="navigateBack()" > <i class="fa fa-fast-backward"></i> Back to Blog (P)</button>
+<button class="btn btn-primary-outline" type="button" 
+[routerLink]="['/viewpost',postId+1]" 
+[queryParams]="{page:this.page,limit:this.limit,sort:this.sort,order:this.order,postId:this.originalPostId}" > 
+<i class="fa fa-backward"></i> Prev Post
+</button>
+
+<button class="btn btn-primary-outline" type="button" 
+[routerLink]="['/viewpost',postId+1]" 
+[queryParams]="{page:this.page,limit:this.limit,sort:this.sort,order:this.order,postId:this.originalPostId}" > 
+<i class="fa fa-forward"></i> Next Post
+</button>
+
+<button class="btn btn-primary-outline" type="button" (click)="randomPost()" > Random Post</button>
+
+<br>
+ID from snapshot : {{postId}}
+<br>
+ID from Subscribe Params : {{_temp}}
+

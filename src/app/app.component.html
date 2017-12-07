@@ -21,13 +21,25 @@
               <li class="nav-item">
                 <a class="nav-link"routerLinkActive="active current" routerLink="/contact">Contact</a>
               </li>
+              <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+                  <a class="nav-link"routerLinkActive="active current" routerLink="/login">login</a>
+              </li>
+              <li class="nav-item" *ngIf="authService.isLoggedIn()">
+                <a class="nav-link"routerLinkActive="active current"  (click)="logout()">Logout</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.isLoggedIn()">
+              <span class="text-white"> Welcome {{authService.currentUser.FullName}}</span>
+            </li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
               <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            
           </div>
+          
         </nav>
+        
       </header>
   
       <div class="container-fluid mt-5">
@@ -38,7 +50,10 @@
                 <a class="nav-link" routerLinkActive="active current" routerLink="/dashboard">Overview </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active current" routerLink="/reports">Blog</a>
+                <a class="nav-link" routerLinkActive="active current" 
+                routerLink="/reports"
+                [queryParams]="{page:1,limit:5,sort:'title',order:'asc'}"
+                >Blog</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active current" routerLink="/analytics">Analytics</a>
@@ -58,10 +73,10 @@
   
             <ul class="nav nav-pills flex-column">
               <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active current" routerLink="#">Settings</a>
+                <a class="nav-link" routerLinkActive="active current" routerLink="/githubjobs/positions/0/0">Github Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active current" routerLink="/aboutus">About us</a>
+                <a class="nav-link" routerLinkActive="active current" routerLink="/aboutus/1">About us</a>
               </li>
              
             </ul>

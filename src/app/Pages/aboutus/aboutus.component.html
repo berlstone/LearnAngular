@@ -1,0 +1,45 @@
+
+
+
+<div class="container">
+  
+        <header class="masthead">
+          <h3>Jokan - Character <small>https://jikan.me/docs</small></h3>
+          <h4>{{charecters.name}}</h4>
+         
+        </header>
+  
+        <main role="main">
+  
+          <!-- Jumbotron -->
+          <div class="jumbotron">
+            <h1>{{charecters.name}}!</h1>
+            <p class="lead">{{charecters.about}}</p>
+            <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+          </div>
+  
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-lg-4" *ngFor="let anime of charecters.animeography">
+              <h2>{{anime.name}}</h2>
+              <img src="{{anime.image}}" >
+              <p><a class="btn btn-primary" href="{{anime.link}}" role="button">View details &raquo;</a></p>
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-lg-4" *ngFor="let anime of charecters.voice-actors">
+              <h2>{{anime.name}}</h2>
+              <img src="{{anime.image}}" >
+              <p><a class="btn btn-primary" href="{{anime.link}}" role="button">View details &raquo;</a></p>
+            </div>
+           
+          </div>
+        </main>
+  
+        <!-- Site footer -->
+        <footer class="footer">
+          <p>&copy; Company 2017</p>
+        </footer>
+  
+      </div> <!-- /container -->

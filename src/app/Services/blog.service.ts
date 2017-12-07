@@ -8,12 +8,11 @@ import { DataService } from './data.service';
 @Injectable()
 export class BlogService extends DataService {
 
-  url:string = "https://jsonplaceholder.typicode.com/posts";
-  
-  constructor(http: Http) { 
-    super(  "https://jsonplaceholder.typicode.com/posts", http);
-  }
+  static url = "http://google.com";
 
+  constructor( http: Http) { 
+    super("https://jsonplaceholder.typicode.com/posts", http);
+  }
 
 
 }

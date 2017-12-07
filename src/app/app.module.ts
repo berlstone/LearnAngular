@@ -1,3 +1,11 @@
+import { AdminAuthGuard } from './Services/admin-auth-guard.service';
+import { AuthGuard } from './Services/auth-guard.service';
+import { CanActivate } from '@angular/router/src/interfaces';
+
+import { GithubJobsService } from './Services/github-jobs.service';
+import { GithubJobsComponent } from './Pages/github-jobs/github-jobs.component';
+import { AboutusComponent } from './Pages/aboutus/aboutus.component';
+
 import { ErrorHandler } from '@angular/core';
 import { GlobalErrorhandler } from './common/global-error-handler';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -29,6 +37,12 @@ import { ReportsComponent } from './Pages/reports/reports.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { RatingComponent } from './components/rating/rating.component';
+import { ViewpostComponent } from './pages/viewpost/viewpost.component';
+import { AuthService } from './Services/auth.service';
+import { LoginComponent } from './Pages/login/login.component';
+import { ConfigurationsService } from './Services/configurations.service';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { NoAccessComponent } from './pages/no-access/no-access.component';
 
 
 @NgModule({
@@ -49,7 +63,12 @@ import { RatingComponent } from './components/rating/rating.component';
     DashboardComponent,
     ReportsComponent,
     AnalyticsComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AboutusComponent,
+    GithubJobsComponent,
+    ViewpostComponent,
+    LoginComponent,
+    NoAccessComponent
     
   ],
   imports: [
@@ -61,20 +80,31 @@ import { RatingComponent } from './components/rating/rating.component';
     ToastModule.forRoot(),
     RouterModule.forRoot([
       {path:'',component:DashboardComponent},
-      {path:'courses',component:CourseComponent},
+      {path:'courses',component:CourseComponent,canActivate:[AdminAuthGuard]},
       {path:'contact',component:ContactFormComponent},
       {path:'changepassword',component:ChangePasswordComponent},
       {path:'dashboard',component:DashboardComponent},
-      {path:'reports',component:ReportsComponent},
-      {path:'analytics',component:AnalyticsComponent},
+      {path:'reports',component:ReportsComponent,canActivate:[ AuthGuard ]},
+      {path:'analytics',component:AnalyticsComponent,canActivate:[ AuthGuard ]},
+      {path:'aboutus/:id',component:AboutusComponent},
+      {path:'githubjobs/positions/:title/:location',component:GithubJobsComponent},
+      {path:'viewpost/:id',component:ViewpostComponent},
+      {path:'login',component:LoginComponent},
+      {path:'noaccess',component:NoAccessComponent},
       {path:'**',component:NotfoundComponent}
     ]),
     HttpModule
   ],
   providers: [
+    ConfigurationsService,
+    AuthGuard,
+    AuthService,
+    AdminAuthGuard,
     BlogService,
     JSONData,
     CourseService,
+
+    GithubJobsService,
     {provide: ErrorHandler,useClass:GlobalErrorhandler}
   ],
   bootstrap: [AppComponent]

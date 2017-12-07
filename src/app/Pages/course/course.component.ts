@@ -30,7 +30,7 @@ export class CourseComponent implements OnInit {
 
   totalpics = this.sampledata.Photos.length;
 
-  dumtext = this.blogService.getAlbums();
+  dumtext = "Dummy Text";
   //courses = this._courseService.getCourses();
   //courses = this.sampledata.Posts.slice(0,20);
   courses =[]; 

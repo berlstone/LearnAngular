@@ -1,0 +1,175 @@
+<div id="container">
+  <div id="search" class="clearfix">
+      <form method="get" action="/positions" class="positions" _lpchecked="1">
+        <div class="bucket description">
+          <h3>Job Description</h3>
+          <div class="field">
+            <label for="description_field" class="placeholder" style="display: none;">Filter by title, benefits, companies, expertise</label>
+            <input id="description_field" name="description" type="text" value="code">
+          </div>
+        </div>
+        <div class="bucket location">
+          <h3>Location</h3>
+          <div class="field">
+            <label for="location_field" class="placeholder" style="display: none;">Filter by city, state, zip code or country</label>
+            <input id="location_field" name="location" type="text" value="new york">
+          </div>
+        </div>
+        <div class="bucket fulltime">
+          <label class="simplefield">
+            <input id="full_time_field" name="full_time" type="checkbox">
+            Full Time Only
+          </label>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+
+
+
+  </div><!-- /#search -->
+  <div id="page">
+    <div class="inner">
+      <h1>Showing  jobs near new york </h1>
+
+<div class="columns generic">
+<div class="column main">
+
+  <ul>
+    <li *ngFor="let job of jobs;">
+      {{job.title}}
+    </li>
+  </ul>
+<table class="positionlist">
+  <tbody><tr>
+    <td class="title">
+      <h4><a href="/positions/66bc6786-0817-11e7-85ac-a935d69efb5d">Senior Software Engineer</a></h4>
+      <p class="source">
+        <a href="/companies/Reaktor" class="company">Reaktor</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York</span>
+      <span class="when relatize relatized">November 20, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/1fbbc72a-cbce-11e7-9eac-ce4eb3f8b66d">Senior Software Engineer - New York</a></h4>
+      <p class="source">
+        <a href="/companies/JOOR, Inc." class="company">JOOR, Inc.</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York</span>
+      <span class="when relatize relatized">November 17, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/08184c5a-c8e6-11e7-8e9d-45d41fb68108">Scientific Software Developer</a></h4>
+      <p class="source">
+        <a href="/companies/Schrödinger, Inc." class="company">Schrödinger, Inc.</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York</span>
+      <span class="when relatize relatized">November 14, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/c67bd820-c570-11e7-905f-a26e31a68664">Software Developer, Server Side Technologies</a></h4>
+      <p class="source">
+        <a href="/companies/Jun Group" class="company">Jun Group</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York, NY, US</span>
+      <span class="when relatize relatized">November 09, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/5e3757fc-c0d5-11e7-98c3-71c3b61d6a97">Software Engineer, Infrastructure and Tools</a></h4>
+      <p class="source">
+        <a href="/companies/Schrödinger" class="company">Schrödinger</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York, NY</span>
+      <span class="when relatize relatized">November 04, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/67e57890-bff6-11e7-931f-e161888c7a02">Senior Android Engineer, Digital Innovation Lab, NYC - SNKRS</a></h4>
+      <p class="source">
+        <a href="/companies/NIKE, Inc." class="company">NIKE, Inc.</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York City, NY</span>
+      <span class="when relatize relatized">November 02, 2017</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">
+      <h4><a href="/positions/32d593e2-bf24-11e7-91e9-3895faadb525">Interactive News Developer (Backend and Tooling)</a></h4>
+      <p class="source">
+        <a href="/companies/The New York Times" class="company">The New York Times</a>
+        –
+        <strong class="fulltime">Full Time</strong></p>
+    </td>
+    <td class="meta">
+      <span class="location">New York City</span>
+      <span class="when relatize relatized">November 01, 2017</span>
+    </td>
+  </tr>
+  
+</tbody></table>
+
+</div><!-- /.column.main -->
+<div class="column sidebar">
+
+<a href="/positions.atom?description=code&amp;location=new+york" class="feed">Subscribe to Atom Feed</a>
+
+<a href="http://twitter.com/GitHubJobs" class="tweet">Follow GitHub Jobs on Twitter</a>
+
+<div class="module">
+  <div class="inner">
+    <h2>Subscribe to email updates</h2>
+    <p>
+      Subscribe and we’ll send you a summary once
+      a week if new jobs are posted to this list.
+    </p>
+    <p><a href="#email-subscribe" rel="facebox" class="button">
+      Subscribe to updates
+    </a></p>
+  </div>
+</div><!-- /.module -->
+
+<div id="email-subscribe" style="display:none;">
+  <h2>Subscribe by Email</h2>
+
+  <p>We promise not to spam or share your email.</p>
+
+  <div class="field">
+    <label class="placeholder" for="email_field" style="display: block;">email</label>
+    <input type="text" id="email_field" class="fullon js-email-subscribe-field">
+  </div>
+  <br>
+  <a href="#" class="js-subscribe-by-email button">Subscribe</a>
+</div>
+
+</div><!-- /.column.sidebar -->
+</div><!-- /.columns.generic -->
+
+    </div>
+  </div><!-- /#page -->
+</div>
