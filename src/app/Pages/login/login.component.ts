@@ -3,7 +3,7 @@ import { AuthService } from './../../Services/auth.service';
 import { UsernameValidator } from './../../Validators/UsernameValidator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
 
 
 
@@ -14,48 +14,48 @@ import 'rxjs/add/operator/catch'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _authService : AuthService, private router:Router, private route:ActivatedRoute) { }
- 
+  constructor(private _authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+
   ngOnInit() {
    }
-     
+
   form1= new FormGroup({
-    email : new FormControl('',[
+    email : new FormControl('', [
       Validators.required,
       UsernameValidator.cannotContainSpace
      // UsernameValidator.shouldBeUnique
     ]),
-    password:new FormControl('',[
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(3)
     ])
-    
+
   });
 
-  get email(){ return this.form1.get('email')}
-  get password(){ return this.form1.get('password')}
+  get email(){ return this.form1.get('email'); }
+  get password(){ return this.form1.get('password'); }
 
   login(){
-    
-    this._authService.login({username:this.email.value,password:this.password.value})
-    .subscribe((res:any)=>{
 
-      if(res)
+    this._authService.login({username: this.email.value, password: this.password.value})
+    .subscribe((res: any) => {
+
+      if (res)
       {
-        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
 
-        this.router.navigate([returnUrl || "/dashboard"])
+        this.router.navigate([returnUrl || '/dashboard']);
       }
       else
-        this.form1.setErrors({login_failed:res._body})
+        this.form1.setErrors({login_failed: res._body});
 
-    },(error:any)=>{
+    }, (error: any) => {
 
-      if(error.status=="400")
-        this.form1.setErrors({login_failed:error._body})
+      if (error.status == '400')
+        this.form1.setErrors({login_failed: error._body});
       else
         console.log(error);
     });
-    
+
   }
 }

@@ -8,35 +8,35 @@ import { PasswordValidators } from './passwordValidators';
   selector: 'changepassword',
   templateUrl: './changepassword.component.html',
   styleUrls: ['./changepassword.component.css']
-  
+
 })
 export class ChangePasswordComponent  {
   chpwdForm;
-  constructor(fb:FormBuilder) { 
+  constructor(fb: FormBuilder) {
     this.chpwdForm = fb.group({
-      oldpassword: ['',[Validators.required,PasswordValidators.checkOldPassword]],
-      newpassword:['',[Validators.required]],
-      repeatpassword:['',[Validators.required]]
-    },{
+      oldpassword: ['', [Validators.required, PasswordValidators.checkOldPassword]],
+      newpassword: ['', [Validators.required]],
+      repeatpassword: ['', [Validators.required]]
+    }, {
       validator: PasswordValidators.repeatpassworderror
     });
-    
+
   }
 
   // Form Variables
-  get oldpassword(){return this.chpwdForm.get('oldpassword');}
-  get newpassword(){return this.chpwdForm.get('newpassword');}
-  get repeatpassword(){return this.chpwdForm.get('repeatpassword');}
+  get oldpassword(){return this.chpwdForm.get('oldpassword'); }
+  get newpassword(){return this.chpwdForm.get('newpassword'); }
+  get repeatpassword(){return this.chpwdForm.get('repeatpassword'); }
 
   validateForm(){
 
     if (this.chpwdForm.dirty && this.chpwdForm.valid) {
       //alert(`Password is changed successfully`);
-      this.chpwdForm.setErrors({errors: false,error_message:'Password is changed successfully'});
+      this.chpwdForm.setErrors({errors: false, error_message: 'Password is changed successfully'});
     }
     else
     {
-      this.chpwdForm.setErrors({errors: true,error_message:'Please check validation errors'});
+      this.chpwdForm.setErrors({errors: true, error_message: 'Please check validation errors'});
       //alert(`Please check validation errors`);
     }
   }

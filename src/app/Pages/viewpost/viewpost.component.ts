@@ -21,16 +21,16 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ViewpostComponent implements OnInit {
   //Query Parameters
-  originalPostId :number;
-  postId:number;
-  page:number=1;
-  limit:number=10;
-  sort:string ='title';
-  order:string = 'asc';
+  originalPostId: number;
+  postId: number;
+  page= 1;
+  limit= 10;
+  sort = 'title';
+  order = 'asc';
 
   post: any;
   isLoaded = false;
-  constructor(private actRoute: ActivatedRoute, private blogService:BlogService, private route:Router,public toastr: ToastsManager, vcr: ViewContainerRef) { 
+  constructor(private actRoute: ActivatedRoute, private blogService: BlogService, private route: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -55,7 +55,7 @@ export class ViewpostComponent implements OnInit {
       this.actRoute.paramMap,
       this.actRoute.queryParamMap
     ])
-    .switchMap(combined=>{
+    .switchMap(combined => {
       this.isLoaded = false;
       //From ParamMap
       this.postId = +combined[0].get('id');
@@ -70,44 +70,44 @@ export class ViewpostComponent implements OnInit {
       return this.blogService.getById(this.postId);
       //return null;
     })
-    .subscribe(post=>{
+    .subscribe(post => {
       console.log('subscribed');
       this.isLoaded = true;
       this.post = post;
       //this.fetchPost( this.postId);
     });
-    
+
 
   }
-  fetchPost(id:number)
+  fetchPost(id: number)
   {
         //Get post byt id
       this.blogService.getById(id)
-      .subscribe(postDetail=>{
+      .subscribe(postDetail => {
         this.post = postDetail;
         this.isLoaded = true;
-        this.toastr.success("Post is loaded successfully!","Success!")
+        this.toastr.success('Post is loaded successfully!', 'Success!');
       },
-      (error:AppError)=>{
-        if(error instanceof NotFoundError)
+      (error: AppError) => {
+        if (error instanceof NotFoundError)
         {
-          this.toastr.error("Sorry this post is not found on server!","Error!")
-          
+          this.toastr.error('Sorry this post is not found on server!', 'Error!');
+
         }
         else throw error;
       });
   }
   navigateBack(){
 
-    this.route.navigate( ['/reports'],{
-      queryParams:{page:this.page,limit:this.limit,sort:this.sort,order:this.order,postId:this.originalPostId}
-    })
+    this.route.navigate( ['/reports'], {
+      queryParams: {page: this.page, limit: this.limit, sort: this.sort, order: this.order, postId: this.originalPostId}
+    });
 
   }
   randomPost(){
     this.route.navigate(
-      ['/viewpost',Math.random()],
-      {queryParams:{page:this.page,limit:this.limit,sort:this.sort,order:this.order,postId:this.originalPostId}
-  })
+      ['/viewpost', Math.random()],
+      {queryParams: {page: this.page, limit: this.limit, sort: this.sort, order: this.order, postId: this.originalPostId}
+  });
   }
 }

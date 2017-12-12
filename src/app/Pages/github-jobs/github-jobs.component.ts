@@ -11,13 +11,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class GithubJobsComponent implements OnInit {
-  jobs:any[];
+  jobs: any[];
 
-  constructor(private githubService:GithubJobsService, private route:ActivatedRoute) { }
+  constructor(private githubService: GithubJobsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.route.paramMap.subscribe(par=>{
+    this.route.paramMap.subscribe(par => {
       console.log(par);
       //alert(par.get('title'))
     });
@@ -25,10 +25,10 @@ export class GithubJobsComponent implements OnInit {
 
     this.githubService.getAll()
     .subscribe(
-      response=>{
+      response => {
         this.jobs = response;
-      }, 
-      (error:AppError)=>{
+      },
+      (error: AppError) => {
         console.log(error.originalError);
       });
   }

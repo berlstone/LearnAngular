@@ -9,10 +9,10 @@ export class ZippyComponent {
 
   constructor() { }
 
-  @Input('title') title:string;
-  @Input('footer') footer:string;
-  @Input('isExpanded') isExpanded:boolean;
-  
+  @Input('title') title: string;
+  @Input('footer') footer: string;
+  @Input('isExpanded') isExpanded: boolean;
+
 
   toggle(){
 

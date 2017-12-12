@@ -12,13 +12,13 @@ export class InputFormatDirective {
 
   @HostListener('blur') onBlur(){
 
-    let value : string = this.el.nativeElement.value;
-    
-    if(this.appInputFormat =='uppercase')
+    const value: string = this.el.nativeElement.value;
+
+    if (this.appInputFormat == 'uppercase')
       this.el.nativeElement.value = value.toUpperCase();
-    else if(this.appInputFormat =='emiratesid')
+    else if (this.appInputFormat == 'emiratesid')
       this.el.nativeElement.value = value.blink();
-    else 
+    else
       this.el.nativeElement.value = value;
   }
 }

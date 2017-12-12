@@ -4,23 +4,23 @@ export class JSONData {
     constructor(){}
 
     get Posts(){
-      return this._postarray.slice(0,25);
-    };
+      return this._postarray.slice(0, 25);
+    }
     get Comments(){
             return this._comments;
-    };
+    }
     get Albums(){
             return this._albums;
-    };
+    }
     get Photos(){
       return this._photos;
-    };
+    }
     get Todos(){
           return this._todos;
-    };
+    }
     get Users(){
       return this._users;
-    };
+    }
   private _postarray = `[
     {
       "userId": 1,

@@ -1,25 +1,25 @@
-import { Validators,AbstractControl } from '@angular/forms';
+import { Validators, AbstractControl } from '@angular/forms';
 
 
 export class CommentValidators{
 
-    static cannotContainSplChar(control:AbstractControl){
+    static cannotContainSplChar(control: AbstractControl){
 
-        let spclChar = ['#','!','@','$','%','<','>'];
-        let char :string;
-        let value : string = control.value;
-         
-        for (var i = 0; i != spclChar.length; i++) {
-            var substring = spclChar[i];
+        const spclChar = ['#', '!', '@', '$', '%', '<', '>'];
+        let char: string;
+        const value: string = control.value;
+
+        for (let i = 0; i != spclChar.length; i++) {
+            const substring = spclChar[i];
             if (value.indexOf(substring) != - 1) {
-                char= substring;
+                char = substring;
             }
          }
-         var result = {}
-        if(char!=null)
-            return { cannotContainSplChar : { result:true,char:char}} 
+         const result = {};
+        if (char != null)
+            return { cannotContainSplChar : { result: true, char: char}};
         else return null;
-        
+
     }
 
     // static containsAny(str, substrings) {
@@ -29,7 +29,7 @@ export class CommentValidators{
     //          return substring;
     //        }
     //     }
-    //     return null; 
+    //     return null;
     // }
 
 }

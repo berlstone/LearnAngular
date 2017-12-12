@@ -18,7 +18,7 @@ import { BlogService } from './Services/blog.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { Router,RouterModule} from "@angular/router"
+import { Router, RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CourseComponent } from './Pages/course/course.component';
@@ -50,7 +50,7 @@ import { NoAccessComponent } from './pages/no-access/no-access.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     CourseComponent,
     NavbarComponent,
     SummaryPipe,
@@ -71,7 +71,7 @@ import { NoAccessComponent } from './pages/no-access/no-access.component';
     ViewpostComponent,
     LoginComponent,
     NoAccessComponent
-    
+
   ],
   imports: [
     HttpModule,
@@ -82,34 +82,34 @@ import { NoAccessComponent } from './pages/no-access/no-access.component';
     ReactiveFormsModule,
     ToastModule.forRoot(),
     RouterModule.forRoot([
-      {path:'',component:DashboardComponent},
-      {path:'courses',component:CourseComponent,canActivate:[AdminAuthGuard]},
-      {path:'contact',component:ContactFormComponent},
-      {path:'changepassword',component:ChangePasswordComponent},
-      {path:'dashboard',component:DashboardComponent},
-      {path:'reports',component:ReportsComponent},
-      {path:'analytics',component:AnalyticsComponent,canActivate:[ AuthGuard ]},
-      {path:'aboutus/:id',component:AboutusComponent,canActivate:[ AuthGuard ]},
-      {path:'githubjobs/positions/:title/:location',component:GithubJobsComponent},
-      {path:'viewpost/:id',component:ViewpostComponent},
-      {path:'login',component:LoginComponent},
-      {path:'noaccess',component:NoAccessComponent},
-      {path:'**',component:NotfoundComponent}
+      {path: '', component: DashboardComponent},
+      {path: 'courses', component: CourseComponent, canActivate: [AdminAuthGuard]},
+      {path: 'contact', component: ContactFormComponent},
+      {path: 'changepassword', component: ChangePasswordComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'reports', component: ReportsComponent},
+      {path: 'analytics', component: AnalyticsComponent, canActivate: [ AuthGuard ]},
+      {path: 'aboutus/:id', component: AboutusComponent, canActivate: [ AuthGuard ]},
+      {path: 'githubjobs/positions/:title/:location', component: GithubJobsComponent},
+      {path: 'viewpost/:id', component: ViewpostComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'noaccess', component: NoAccessComponent},
+      {path: '**', component: NotfoundComponent}
     ])
-    
+
   ],
   providers: [
     ConfigurationsService,
     AuthGuard,
-    
+
     AuthService,
     AdminAuthGuard,
     BlogService,
     JSONData,
     CourseService,
     GithubJobsService,
-    {provide: ErrorHandler,useClass:GlobalErrorhandler}
-    
+    {provide: ErrorHandler, useClass: GlobalErrorhandler}
+
   ],
   bootstrap: [AppComponent]
 })

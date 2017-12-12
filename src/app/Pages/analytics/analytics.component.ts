@@ -10,30 +10,30 @@ import { AuthService } from '../../Services/auth.service';
 })
 export class AnalyticsComponent implements OnInit {
 
-  constructor(private _authService:AuthService, private _config:ConfigurationsService) { }
- 
+  constructor(private _authService: AuthService, private _config: ConfigurationsService) { }
+
   ngOnInit() {
   }
-  webdata='<empty>';
+  webdata= '<empty>';
   webdatauth = '<empty>';
 
-  getData = ()=>{
+  getData = () => {
     this._authService.getAuthenticatedData()
-    .subscribe(res=>{
+    .subscribe(res => {
       this.webdata = res.json();
-    },error=>{
-      this.webdata=error;
+    }, error => {
+      this.webdata = error;
     });
   }
   getDataAuth(){
     this._authService.getAuthData()
     .subscribe(
-      res=>{
+      res => {
         this.webdatauth = res.json();
       },
-      err=>{
+      err => {
         this.webdatauth = err.json();
       }
-    )
+    );
   }
 }

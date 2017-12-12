@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl,Validators,FormArray,FormBuilder } from '@angular/forms'
-import {CommentValidators} from './commentValidator'
-import {UsernameValidator} from './../../Validators/UsernameValidator'
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import {CommentValidators} from './commentValidator';
+import {UsernameValidator} from './../../Validators/UsernameValidator';
 
 
 @Component({
@@ -11,49 +11,49 @@ import {UsernameValidator} from './../../Validators/UsernameValidator'
 })
 export class ContactFormComponent  {
   formbuilder;
-  constructor(fb:FormBuilder) { 
+  constructor(fb: FormBuilder) {
 
     this.formbuilder = fb.group({
       name: [],
       contact: fb.group({
         address : [],
-        location:[]
+        location: []
       }),
       courses: fb.array([])
     });
   }
 
   form2= new FormGroup({
-    username : new FormControl('',[
+    username : new FormControl('', [
       Validators.required,
       UsernameValidator.cannotContainSpace
      // UsernameValidator.shouldBeUnique
     ]),
-    fullname:new FormControl('',[
+    fullname: new FormControl('', [
       Validators.required,
       Validators.minLength(3)
     ]),
-    notes: new FormControl('',[
+    notes: new FormControl('', [
       Validators.required,
-      Validators.minLength(3), 
+      Validators.minLength(3),
       CommentValidators.cannotContainSplChar,
-      
+
     ])
-    
+
   });
   register() {
     this.form2.setErrors({
-      regerror:true,regerror_text:"Sorry registration has failed due to fucking reason!"
+      regerror: true, regerror_text: 'Sorry registration has failed due to fucking reason!'
     });
-    
+
   }
   // Form Variables
-  get fullname() {return this.form2.get("fullname");}
-  get notes() {return this.form2.get("notes");}
-  get username(){return this.form2.get("username");}
+  get fullname() {return this.form2.get('fullname'); }
+  get notes() {return this.form2.get('notes'); }
+  get username(){return this.form2.get('username'); }
   get formData() { return <FormArray>this.form2.get('coursename'); }
 
-  eid_pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}";
+  eid_pattern= '[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}';
   contacts = [];
 
   log(value){
@@ -72,12 +72,12 @@ export class ContactFormComponent  {
 
   }
   countries = [
-    {id:'AE', name:'United Arab Emirates'},
-    {id:'IN', name:'India'},
-    {id:'US', name:'United States of America'},
-    {id:'AF', name:'Africa'},
-    {id:'SL', name:'Srilanka'},
-    {id:'PK', name:'Pakistan'}
+    {id: 'AE', name: 'United Arab Emirates'},
+    {id: 'IN', name: 'India'},
+    {id: 'US', name: 'United States of America'},
+    {id: 'AF', name: 'Africa'},
+    {id: 'SL', name: 'Srilanka'},
+    {id: 'PK', name: 'Pakistan'}
   ];
 
   arrayform = new FormGroup({
@@ -86,16 +86,16 @@ export class ContactFormComponent  {
   get courses (){
     return this.arrayform.get('coursename') as FormArray;
   }
-  addCourse(course : HTMLInputElement){
+  addCourse(course: HTMLInputElement){
     this.courses.push(new FormControl(course.value));
     course.value = '';
   }
   removeCourse(course: FormControl){
-    let index = this.courses.controls.indexOf(course);
+    const index = this.courses.controls.indexOf(course);
     this.courses.removeAt(index);
   }
   complexform = new FormGroup({
-    name: new FormControl('',[]),
+    name: new FormControl('', []),
     contact: new FormGroup({
         person: new FormControl(),
         address: new FormControl(),
