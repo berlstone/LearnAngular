@@ -1,3 +1,9 @@
 <p>
   analytics works!
 </p>
+<button class="btn btn-primary" (click)="getData()" >Call Authenticated Service</button>
+<div class="alert alert-info" *ngIf="webdata!=null"> {{webdata}} </div>
+
+<button class="btn btn-primary" (click)="getDataAuth()" >Call Authenticated Service</button>
+<small>using angular AuthHttp</small>
+<div class="alert alert-info" *ngIf="webdatauth!=null"> {{webdatauth}} </div>

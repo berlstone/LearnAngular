@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired, AuthHttp } from 'angular2-jwt';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
   public loginRedirectUrl: string;
   public logoutRedirectUrl: string;
   
-  constructor(private http:Http, private router:Router, private configurations :ConfigurationsService) { }
+  constructor(private http:Http,private authHttp:Http, private router:Router, private configurations :ConfigurationsService) { }
 
   login(credentials){
 
@@ -164,7 +165,56 @@ export class AuthService {
       return decodedtoken;
     }
     return null;
-
-
   }
+  getAuthenticatedData(){
+
+      let headers = new Headers;
+      let token = localStorage.getItem('token');
+
+      headers.append("Authorization","Bearer " + token);
+      headers.append("Content-Type","application/json");
+
+      let options = new RequestOptions({headers: headers});
+
+      return this.http.get(this.configurations.apiUrl + "/Auth/Test",options)
+      .map((res)=> res)
+      // .catch((error:Response)=>{
+      //   let erx:any = error;
+  
+      //   if(erx.status == 401)
+      //   {
+      //     console.log("Sorry this user is not authenticated");
+      //     return Observable.throw(erx);
+      //   }
+      //   else{
+      //     console.log("400 bad request could not be identified");
+      //     return Observable.throw(error);
+      //   }
+                    
+      // });
+    
+  }
+  getAuthData(){
+    
+          return this.authHttp.get(this.configurations.apiUrl + "/Auth/Test")
+          .map((res:Response)=> {
+            //if(res.status == 401)
+             //res = "Unauthorized : 401";
+             res = res;
+          })
+          .catch((error:Response)=>{
+            let erx:any = error;
+      
+            if(erx.status == 401)
+            {
+              console.log("Sorry this user is not authenticated");
+              return Observable.throw(erx);
+            }
+            else{
+              console.log("400 bad request could not be identified");
+              return Observable.throw(error);
+            }
+                        
+          });
+      }
 }

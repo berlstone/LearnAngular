@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./aboutus.component.css']
 })
 export class AboutusComponent implements OnInit {
-  charecters:any;
+  charecters:any = {};
   routes:any;
   constructor( public toastr: ToastsManager, vcr: ViewContainerRef,private  route: ActivatedRoute) { 
     this.toastr.setRootViewContainerRef(vcr);
@@ -19,10 +19,9 @@ export class AboutusComponent implements OnInit {
 
   ngOnInit() {
     this.routes = this.route.paramMap.subscribe(
-      
       param=>console.log(param .has('id'))
     )
-   
+    
     // this._service.getAll()
     // .subscribe(
     //   response=>{
@@ -31,6 +30,7 @@ export class AboutusComponent implements OnInit {
     //   (error:AppError)=>{
     //     this.toastr.error("Some error occured in fetrching the data. Please try again","Error!");
     //   });
+    this.charecters = {name:"Clinton Beyerle",about:"Clinton is a professional progammer with a good background in application development"}
   }
 
 }

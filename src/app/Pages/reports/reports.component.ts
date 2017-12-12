@@ -65,7 +65,9 @@ export class ReportsComponent implements OnInit {
       throw error.originalError;
     }
   }
-
+  loadPost(){
+    this.toastr.info("The blog is already loaded","Info!");
+  }
 
   navigate(dir:string){
 

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'My First Angular 4 App';
 
-  constructor(private authService:AuthService, private route:Router){
+  constructor(public authService:AuthService, private route:Router){
   }
 
   logout(){

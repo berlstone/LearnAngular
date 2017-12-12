@@ -51,6 +51,7 @@ export class ContactFormComponent  {
   get fullname() {return this.form2.get("fullname");}
   get notes() {return this.form2.get("notes");}
   get username(){return this.form2.get("username");}
+  get formData() { return <FormArray>this.form2.get('coursename'); }
 
   eid_pattern="[0-9]{3}-[0-9]{4}-[0-9]{7}-[0-9]{1}";
   contacts = [];

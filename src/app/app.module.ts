@@ -1,7 +1,9 @@
+
+
 import { AdminAuthGuard } from './Services/admin-auth-guard.service';
 import { AuthGuard } from './Services/auth-guard.service';
-import { CanActivate } from '@angular/router/src/interfaces';
-
+import { CanActivate } from '@angular/router';
+import { HttpModule } from '@angular/http';
 import { GithubJobsService } from './Services/github-jobs.service';
 import { GithubJobsComponent } from './Pages/github-jobs/github-jobs.component';
 import { AboutusComponent } from './Pages/aboutus/aboutus.component';
@@ -17,7 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Router,RouterModule} from "@angular/router"
-import { HttpModule } from "@angular/http"
+
 import { AppComponent } from './app.component';
 import { CourseComponent } from './Pages/course/course.component';
 import { SummaryPipe } from './Directives/summary.pipe';
@@ -27,7 +29,7 @@ import { LikeComponent } from './Components/like/like.component';
 import { InputFormatDirective } from './Directives/input-format.directive';
 import { ZippyComponent } from './Components/zippy/zippy.component';
 import { ContactFormComponent } from './Pages/contact-form/contact-form.component';
-import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ChangePasswordComponent } from './pages/changepassword/changepassword.component';
 
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
@@ -72,6 +74,7 @@ import { NoAccessComponent } from './pages/no-access/no-access.component';
     
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -84,28 +87,29 @@ import { NoAccessComponent } from './pages/no-access/no-access.component';
       {path:'contact',component:ContactFormComponent},
       {path:'changepassword',component:ChangePasswordComponent},
       {path:'dashboard',component:DashboardComponent},
-      {path:'reports',component:ReportsComponent,canActivate:[ AuthGuard ]},
+      {path:'reports',component:ReportsComponent},
       {path:'analytics',component:AnalyticsComponent,canActivate:[ AuthGuard ]},
-      {path:'aboutus/:id',component:AboutusComponent},
+      {path:'aboutus/:id',component:AboutusComponent,canActivate:[ AuthGuard ]},
       {path:'githubjobs/positions/:title/:location',component:GithubJobsComponent},
       {path:'viewpost/:id',component:ViewpostComponent},
       {path:'login',component:LoginComponent},
       {path:'noaccess',component:NoAccessComponent},
       {path:'**',component:NotfoundComponent}
-    ]),
-    HttpModule
+    ])
+    
   ],
   providers: [
     ConfigurationsService,
     AuthGuard,
+    
     AuthService,
     AdminAuthGuard,
     BlogService,
     JSONData,
     CourseService,
-
     GithubJobsService,
     {provide: ErrorHandler,useClass:GlobalErrorhandler}
+    
   ],
   bootstrap: [AppComponent]
 })

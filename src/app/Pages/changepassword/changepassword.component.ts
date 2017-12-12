@@ -5,9 +5,9 @@ import { PasswordValidators } from './passwordValidators';
 
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  selector: 'changepassword',
+  templateUrl: './changepassword.component.html',
+  styleUrls: ['./changepassword.component.css']
   
 })
 export class ChangePasswordComponent  {

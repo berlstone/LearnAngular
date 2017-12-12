@@ -172,11 +172,11 @@
       <input type="text" name="coursename" id="coursename" (keyup.enter)="addCourse(course)" #course>
     </form>
     <ul class="list-group" >
-      <li class="list-group-item" *ngFor="let course of arrayform.get('coursename').controls;" (click)="removeCourse(course)">{{course.value}}</li>
+      <li class="list-group-item" *ngFor="let course of formData.controls;" (click)="removeCourse(course)">{{course.value}}</li>
     </ul>
   </div>
   <div class="col-md-6">
-    <app-change-password></app-change-password>
+
   </div>
   <div class="col-md-2"></div>
 </div>
